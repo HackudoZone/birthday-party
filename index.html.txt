@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Upmanyu (Thiripathi)</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('https://i.imgur.com/zY5Xx76.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            color: white;
+            text-align: center;
+        }
+        h1 {
+            margin-top: 50px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px #000;
+        }
+        #countdown {
+            font-size: 2em;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+        .mission {
+            margin: 20px;
+            padding: 20px;
+            background: rgba(0,0,0,0.7);
+            border-radius: 15px;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .mission:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        #finalMessage {
+            display: none;
+            margin-top: 40px;
+            font-size: 2em;
+            color: #00ff00;
+        }
+        audio {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<audio id="bgmusic" src="https://files.catbox.moe/5mq1zm.mp3" autoplay loop></audio>
+
+<h1>🎮 Mission: Birthday Surprise 🎮</h1>
+<div id="countdown">Loading Countdown...</div>
+
+<div id="mission1" class="mission" onclick="completeMission(1)">🎂 Blow the Candle (Tap here)</div>
+<div id="mission2" class="mission" onclick="completeMission(2)" style="display:none;">🎁 Open the Gift Box (Tap here)</div>
+<div id="mission3" class="mission" onclick="completeMission(3)" style="display:none;">🚀 Swipe Up to Fly (Tap here)</div>
+
+<div id="finalMessage">🎉 MISSION COMPLETE, THIRIPATHI! 🎉<br>Best of Luck for Upcoming CA! 🎯</div>
+
+<script>
+    var missionsCompleted = 0;
+
+    function completeMission(mission) {
+        if (mission === 1) {
+            document.getElementById('mission1').style.display = 'none';
+            document.getElementById('mission2').style.display = 'block';
+        }
+        if (mission === 2) {
+            document.getElementById('mission2').style.display = 'none';
+            document.getElementById('mission3').style.display = 'block';
+        }
+        if (mission === 3) {
+            document.getElementById('mission3').style.display = 'none';
+            document.getElementById('finalMessage').style.display = 'block';
+            document.body.style.background = "url('https://i.imgur.com/AKP5v8F.gif') no-repeat center center fixed";
+            document.body.style.backgroundSize = "cover";
+        }
+    }
+
+    var birthdayDate = new Date("Apr 29, 2025 00:00:00").getTime();
+    var x = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = birthdayDate - now;
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("countdown").innerHTML = "🎉 It's Your Birthday, Upmanyu! 🎉";
+        }
+    }, 1000);
+</script>
+
+</body>
+</html>
